@@ -18,28 +18,39 @@
     }
     header {
       background-color: #b28dff;
-      padding: 20px;
+      padding: 30px;
       color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      text-align: center;
     }
     header h1 {
       margin: 0;
-      text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: bold;
     }
     nav {
-      margin-top: 10px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
     nav a {
-      margin: 0 15px;
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      background-color: #d4b3ff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s, transform 0.2s;
     }
     nav a:hover {
-      color: #ff8c00;
+      background-color: #dda0dd; /* Cor de hover lavanda */
+      transform: scale(1.1);
     }
     main {
       flex: 1;
