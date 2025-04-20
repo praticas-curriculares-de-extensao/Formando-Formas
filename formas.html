@@ -7,13 +7,13 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       font-family: 'Arial Rounded MT Bold', sans-serif;
       background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
-      margin: 0;
-      padding: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -25,16 +25,17 @@
       padding: 20px;
       text-align: center;
       color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 2.2em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     header nav {
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     header a {
@@ -42,20 +43,34 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s;
+      font-size: 1.1em;
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: all 0.3s;
     }
 
     header a:hover {
-      color: #ff8c00;
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
     .subtitle {
       text-align: center;
-      margin: 25px 20px 10px;
-      font-size: 1.3em;
+      margin: 25px 20px 15px;
+      font-size: 1.4em;
       color: #6a0dad;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .subtitle::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: #b28dff;
+      margin: 10px auto;
+      border-radius: 3px;
     }
 
     .shapes-container {
@@ -64,31 +79,39 @@
       flex-wrap: wrap;
       gap: 40px;
       padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .shape-container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.3s;
+    }
+
+    .shape-container:hover {
+      transform: translateY(-5px);
     }
 
     .shape-box {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      min-height: 140px;
-      width: 160px;
+      height: 150px;
+      width: 150px;
     }
 
     .shape {
       cursor: pointer;
-      transition: transform 0.3s, border 0.3s;
-      border: 3px solid transparent;
+      transition: all 0.3s;
+      border: 3px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .shape:hover {
       transform: scale(1.1);
-      border-color: #000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .circle {
@@ -111,86 +134,63 @@
     }
 
     .triangle {
-      position: relative;
-      width: 0;
-      height: 0;
-      border-left: 65px solid transparent;
-      border-right: 65px solid transparent;
-      border-bottom: 130px solid #f96b6b;
-      transition: transform 0.3s;
-    }
-
-    .triangle::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: -68px;
-      width: 0;
-      height: 0;
-      border-left: 68px solid transparent;
-      border-right: 68px solid transparent;
-      border-bottom: 136px solid transparent;
-      z-index: -1;
-      transition: border-bottom-color 0.3s;
-    }
-
-    .triangle:hover {
-      transform: scale(1.1);
-    }
-
-    .triangle:hover::after {
-      border-bottom-color: transparent; /* Desabilita a mudança de cor */
+      width: 130px;
+      height: 130px;
+      background: #f96b6b;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     }
 
     .label {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #333;
+      margin-top: 15px;
+      font-size: 1.3rem;
+      color: #4b0082;
       font-weight: bold;
       text-align: center;
+      background: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
     footer {
-      margin-top: auto;
+      margin-top: 50px;
       background-color: #b28dff;
       color: white;
       text-align: center;
-      padding: 20px 0;
-      font-size: 0.95rem;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .footer-logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 25px 0;
+      font-size: 1rem;
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
     }
 
     .footer-logo {
       height: 50px;
       width: auto;
+      margin-bottom: 10px;
     }
 
-    .footer-text p {
-      margin: 5px 0;
-      font-size: 1.1rem;
-      color: #f3f3f3;
+    .game-section {
+      background: white;
+      padding: 30px;
+      margin: 40px auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
     }
 
-    .footer-text p:last-child {
-      font-size: 1rem;
-      color: #d4d4d4;
+    .game-title {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .footer-text p:first-child {
-      font-weight: bold;
+    .game-title h1 {
+      font-size: 2em;
+      color: #4b0082;
+      margin-bottom: 10px;
+    }
+
+    .game-title p {
+      font-size: 1.2em;
+      color: #6a0dad;
     }
 
     .shapes, .targets {
@@ -201,87 +201,99 @@
       flex-wrap: wrap;
     }
 
-    .shape, .target {
+    .shape {
       width: 100px;
       height: 100px;
-      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      cursor: pointer;
+      cursor: grab;
       user-select: none;
-      transition: transform 0.2s;
+      transition: all 0.3s;
     }
 
     .shape:hover {
       transform: scale(1.1);
     }
 
-    .circle { background: #FF6B6B; border-radius: 50%; }
-    .square { background: #6BCB77; }
-    .rectangle {
-      background: #FFD93D;
-      width: 120px;
-      height: 80px;
-      border-radius: 10px;
-    }
-    .triangle {
-      width: 0;
-      height: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-      border-bottom: 100px solid #4D96FF;
-      background: none;
+    .shape:active {
+      cursor: grabbing;
     }
 
-    /* Corrigindo os contornos das áreas de destino */
+    .shape.circle { background: #FF6B6B; border-radius: 50%; }
+    .shape.square { background: #6BCB77; }
+    .shape.rectangle { background: #FFD93D; width: 120px; height: 80px; }
+    .shape.triangle { background: #4D96FF; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+
     .target {
-      background: #ffffff;
-      border: 2px dashed #ccc; /* Borda tracejada */
-      color: #555;
-      width: 120px;
+      width: 140px;
       height: 100px;
-      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background: white;
+      border: 2px dashed #b28dff;
+      border-radius: 10px;
+      color: #4b0082;
+      transition: all 0.3s;
+      font-size: 1.1em;
+    }
+
+    /* Removidos estilos especiais dos targets (círculo e triângulo) */
+
+    .target:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .success {
-      background-color: #d4edda !important;
-      border: 2px dashed #28a745 !important;
+      background-color: #d4edda;
+      border: 2px solid #28a745 !important;
       color: #155724;
     }
 
     #message {
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: #2d6a4f;
-      position: relative;
-      z-index: 10;  /* Garante que o texto não se sobreponha a outros elementos */
+      font-size: 1.4em;
+      margin: 20px 0;
+      color: #4b0082;
+      text-align: center;
+      font-weight: bold;
+      min-height: 50px;
     }
 
-    .confetti {
-      font-size: 2em;
-      animation: pop 0.3s ease-in-out infinite alternate;
-    }
-
-    @keyframes pop {
-      from { transform: scale(1); }
-      to { transform: scale(1.2); }
-    }
-
-    .game-title {
+    .controls {
       text-align: center;
       margin: 20px 0;
     }
 
-    .game-title h1 {
-      font-size: 2em;
-      color: #4b0082;
+    .fun-button {
+      background: #b28dff;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
     }
 
-    .game-title p {
-      font-size: 1.2em;
-      color: #333;
+    .fun-button:hover {
+      background: #9a75e0;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 0.5s;
     }
   </style>
 </head>
@@ -291,7 +303,7 @@
     <nav>
       <a href="index.html">Página Inicial</a>
       <a href="jogos.html">Jogos</a>
-      <a href="sobrenos.html">Sobre Nós</a>
+      <a href="sobre.html">Sobre Nós</a>
     </nav>
   </header>
 
@@ -323,38 +335,57 @@
 
     <div class="shape-container">
       <div class="shape-box">
-        <div class="triangle" onclick="falar('Triângulo')"></div>
+        <div class="shape triangle" onclick="falar('Triângulo')"></div>
       </div>
       <div class="label">Triângulo</div>
     </div>
   </div>
 
-  <div class="game-title">
-    <h1>Jogo das Formas</h1>
-    <p>Arraste a forma até o nome correspondente!</p>
+  <div class="game-section">
+    <div class="game-title">
+      <h1>Jogo das Formas</h1>
+      <p>Arraste a forma até o nome correspondente!</p>
+    </div>
+
+    <div class="shapes">
+      <div class="shape circle" draggable="true" id="círculo"></div>
+      <div class="shape square" draggable="true" id="quadrado"></div>
+      <div class="shape rectangle" draggable="true" id="retângulo"></div>
+      <div class="shape triangle" draggable="true" id="triângulo"></div>
+    </div>
+
+    <div class="targets">
+      <div class="target" data-name="círculo">Círculo</div>
+      <div class="target" data-name="quadrado">Quadrado</div>
+      <div class="target" data-name="retângulo">Retângulo</div>
+      <div class="target" data-name="triângulo">Triângulo</div>
+    </div>
+
+    <p id="message"></p>
+
+    <div class="controls">
+      <button class="fun-button" onclick="reiniciarJogo()">Jogar Novamente</button>
+    </div>
   </div>
 
-  <div class="shapes">
-    <div class="shape circle" draggable="true" id="círculo"></div>
-    <div class="shape square" draggable="true" id="quadrado"></div>
-    <div class="shape rectangle" draggable="true" id="retângulo"></div>
-    <div class="shape triangle" draggable="true" id="triângulo"></div>
-  </div>
-
-  <div class="targets">
-    <div class="target" data-name="círculo">Círculo</div>
-    <div class="target" data-name="quadrado">Quadrado</div>
-    <div class="target" data-name="retângulo">Retângulo</div>
-    <div class="target" data-name="triângulo">Triângulo</div>
-  </div>
-
-  <p id="message"></p>
+  <footer>
+    <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
+    <p>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão |</p>
+  </footer>
 
   <script>
     function falar(texto) {
       const msg = new SpeechSynthesisUtterance(texto);
       msg.lang = "pt-BR";
+      msg.rate = 0.9;
       window.speechSynthesis.speak(msg);
+
+      const shape = event.target.closest('.shape');
+      if (shape) {
+        shape.classList.remove('pulse');
+        void shape.offsetWidth;
+        shape.classList.add('pulse');
+      }
     }
 
     document.querySelectorAll('.shape').forEach(shape => {
@@ -364,14 +395,27 @@
     document.querySelectorAll('.target').forEach(target => {
       target.addEventListener('dragover', dragOver);
       target.addEventListener('drop', drop);
+      target.addEventListener('dragenter', dragEnter);
+      target.addEventListener('dragleave', dragLeave);
     });
 
     function dragStart(e) {
       e.dataTransfer.setData('text', e.target.id);
+      e.target.style.opacity = '0.6';
     }
 
     function dragOver(e) {
       e.preventDefault();
+    }
+
+    function dragEnter(e) {
+      e.preventDefault();
+      e.target.style.transform = 'scale(1.05)';
+    }
+
+    function dragLeave(e) {
+      e.preventDefault();
+      e.target.style.transform = '';
     }
 
     function drop(e) {
@@ -380,21 +424,35 @@
       const target = e.target;
       const targetName = target.getAttribute('data-name');
 
+      document.querySelectorAll('.target').forEach(t => {
+        t.classList.remove('success');
+        t.style.transform = '';
+      });
+
+      document.getElementById(draggedElementId).style.opacity = '1';
+
       if (draggedElementId === targetName) {
         target.classList.add('success');
-        document.getElementById('message').textContent = "Você acertou!";
-        document.getElementById('message').classList.add('confetti');
+        document.getElementById('message').textContent = "Parabéns! Você acertou!";
+        setTimeout(() => {
+          target.classList.remove('success');
+          document.getElementById('message').textContent = '';
+        }, 2000);
       } else {
-        target.classList.remove('success');
-        document.getElementById('message').textContent = "Tente novamente!";
-        document.getElementById('message').classList.remove('confetti');
+        document.getElementById('message').textContent = "Ops! Tente novamente!";
+        setTimeout(() => {
+          document.getElementById('message').textContent = '';
+        }, 2000);
       }
     }
-  </script>
 
-  <footer>
-    <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
-    <p>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão l |</p>
-  </footer>
+    function reiniciarJogo() {
+      document.querySelectorAll('.target').forEach(target => {
+        target.classList.remove('success');
+        target.style.transform = '';
+      });
+      document.getElementById('message').textContent = '';
+    }
+  </script>
 </body>
 </html>
