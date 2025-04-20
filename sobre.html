@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formando Formas - Sobre Nós</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Arial Rounded MT Bold', sans-serif;
       background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
@@ -16,18 +20,17 @@
 
     header {
       background-color: #b28dff;
-      padding: 30px 20px;
+      padding: 20px 15px;
       color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem;
-      font-weight: bold;
+      font-size: 2.4rem;
     }
 
     nav {
@@ -35,34 +38,52 @@
     }
 
     nav a {
-      margin: 0 15px;
+      position: relative;
+      margin: 0 12px;
       color: white;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      padding: 6px 12px;
+      border-radius: 12px;
       transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #ff8c00;
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    nav a:hover::after {
+      opacity: 1;
     }
 
     main {
-      padding: 50px 20px;
+      padding: 80px 20px 40px;
     }
 
     .intro {
-      max-width: 900px;
-      margin: 0 auto 40px;
+      max-width: 950px;
+      margin: 0 auto 50px;
       font-size: 1.2rem;
       line-height: 1.6;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
     .team {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      justify-items: center;
+      padding: 0 20px;
     }
 
     .member {
@@ -70,31 +91,40 @@
       border: 4px solid #b28dff;
       border-radius: 20px;
       padding: 20px;
-      width: 100%;
-      max-width: 280px;
+      max-width: 100%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
 
     .member:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
 
     .member img {
       width: 100%;
-      border-radius: 15px;
       height: 200px;
       object-fit: cover;
+      border-radius: 15px;
     }
 
     .member h3 {
-      margin: 10px 0 5px;
+      margin: 12px 0 5px;
       font-size: 1.2rem;
+      color: #4b0082;
     }
 
     .member p {
       font-size: 0.95rem;
-      color: #555;
+      color: #333;
+    }
+
+    .member a {
+      color: #b28dff;
+      text-decoration: none;
+    }
+
+    .member a:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -102,6 +132,7 @@
       background-color: #b28dff;
       color: white;
       text-align: center;
+      margin-top: 40px;
     }
 
     footer a {
@@ -119,6 +150,20 @@
       margin-bottom: 10px;
     }
 
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+
+      main {
+        padding-top: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -134,41 +179,40 @@
   <main>
     <section class="intro">
       <h2>Quem Somos</h2>
-<p>Somos um grupo de estudantes comprometidos com a promoção da educação inclusiva e de qualidade. O projeto <strong>Formando Formas</strong> surgiu com o propósito de tornar o ensino de geometria mais acessível, dinâmico e acolhedor, especialmente para o público infantil. Buscamos construir um ambiente seguro e estimulante, que respeite e valorize a diversidade de estilos e ritmos de aprendizagem.
+      <p>Somos um grupo de estudantes comprometidos com a promoção da educação inclusiva e de qualidade. O projeto <strong>Formando Formas</strong> surgiu com o propósito de tornar o ensino de geometria mais acessível, dinâmico e acolhedor, especialmente para o público infantil. Buscamos construir um ambiente seguro e estimulante, que respeite e valorize a diversidade de estilos e ritmos de aprendizagem.</p>
+      <p>Este projeto foi desenvolvido por discentes do 3º período do curso de Licenciatura em Matemática na modalidade a distância (EAD), do Instituto Federal de Educação, Ciência e Tecnologia de Pernambuco (IFPE) – Polo Limoeiro. A iniciativa contou com a orientação da professora formadora Erika Carla Alves Canuto da Costa e do tutor João Silva Rocha, no âmbito da disciplina Componentes Curriculares de Extensão I.</p>
+    </section>
 
-Este projeto foi desenvolvido por discentes do 3º período do curso de Licenciatura em Matemática na modalidade a distância (EAD), do Instituto Federal de Educação, Ciência e Tecnologia de Pernambuco (IFPE) – Polo Limoeiro. A iniciativa contou com a orientação da professora formadora Erika Carla Alves Canuto da Costa e do tutor João Silva Rocha, no âmbito da disciplina Componentes Curriculares de Extensão I.</p>    </section>
+    <section class="team">
+      <div class="member">
+        <img src="hacmone.jpeg" alt="Foto de Hacmone">
+        <h3>Hacmone Alves de Barros</h3>
+        <p><a href="https://www.instagram.com/hacmonebarros?igsh=YjRxbjh4dzlvMzZ0" target="_blank">@hacmonebarros</a></p>
+      </div>
 
-  <section class="team">
-    <div class="member">
-      <img src="hacmone.jpeg" alt="Foto de Hacmone">
-      <h3>Hacmone Alves de Barros</h3>
-      <p><a href="https://www.instagram.com/hacmonebarros?igsh=YjRxbjh4dzlvMzZ0" target="_blank">@hacmonebarros</a></p>
-    </div>
+      <div class="member">
+        <img src="horace.jpeg" alt="Foto de Horace">
+        <h3>Horace José Jimenez</h3>
+        <p><a href="https://www.instagram.com/horacejose?igsh=MTlwam05ZDBpM3Vpag==" target="_blank">@horacejose</a></p>
+      </div>
 
-    <div class="member">
-      <img src="horace.jpeg" alt="Foto de Horace">
-      <h3>Horace José Jimenez</h3>
-      <p><a href="https://www.instagram.com/horacejose?igsh=MTlwam05ZDBpM3Vpag==" target="_blank">@horacejose</a></p>
-    </div>
+      <div class="member">
+        <img src="joaquim.jpeg" alt="Foto de Joaquim">
+        <h3>Joaquim Fragoso Pinto Filho</h3>
+        <p><a href="https://www.instagram.com/joaquimfpf?igsh=dTd6ZzQ0eXBsMnlh" target="_blank">@joaquimfpf</a></p>
+      </div>
 
-    <div class="member">
-      <img src="joaquim.jpeg" alt="Foto de Joaquim">
-      <h3>Joaquim Fragoso Pinto Filho</h3>
-      <p><a href="https://www.instagram.com/joaquimfpf?igsh=dTd6ZzQ0eXBsMnlh" target="_blank">@joaquimfpf</a></p>
-    </div>
-
-    <div class="member">
-      <img src="paula.jpeg" alt="Foto de Paula">
-      <h3>Paula Daniela Silva de Oliveira</h3>
-      <p><a href="https://www.instagram.com/dany_silv1?igsh=MWx0N3UzdXU2djBiaQ==" target="_blank">@dany_silv1</a></p>
-    </div>
-  </section>
-    
+      <div class="member">
+        <img src="paula.jpeg" alt="Foto de Paula">
+        <h3>Paula Daniela Silva de Oliveira</h3>
+        <p><a href="https://www.instagram.com/dany_silv1?igsh=MWx0N3UzdXU2djBiaQ==" target="_blank">@dany_silv1</a></p>
+      </div>
+    </section>
   </main>
 
   <footer>
     <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
-    <p>| 2025 Formando Formas - Projeto da displina de Práticas Curriculares de Extensão l |</p>
+    <p>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão I |</p>
   </footer>
 </body>
 </html>
