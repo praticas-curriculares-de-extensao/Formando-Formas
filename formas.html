@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formando Formas - Formas Geométricas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #4b0082;
+    }
+
+    header {
+      background-color: #b28dff;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    header nav {
+      margin-top: 10px;
+    }
+
+    header a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      color: #ff8c00;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin: 25px 20px 10px;
+      font-size: 1.3em;
+      color: #6a0dad;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .shapes-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    .shape-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shape-box {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 140px;
+      width: 160px;
+    }
+
+    .shape {
+      cursor: pointer;
+      transition: transform 0.3s, border 0.3s;
+      border: 3px solid transparent;
+    }
+
+    .shape:hover {
+      transform: scale(1.1);
+      border-color: #000;
+    }
+
+    .circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #4aa3df;
+    }
+
+    .square {
+      width: 130px;
+      height: 130px;
+      background: #ffcc66;
+    }
+
+    .rectangle {
+      width: 160px;
+      height: 100px;
+      background: #66cc99;
+    }
+
+    .triangle {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-left: 65px solid transparent;
+      border-right: 65px solid transparent;
+      border-bottom: 130px solid #f96b6b;
+      transition: transform 0.3s;
+    }
+
+    .triangle::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -68px;
+      width: 0;
+      height: 0;
+      border-left: 68px solid transparent;
+      border-right: 68px solid transparent;
+      border-bottom: 136px solid transparent;
+      z-index: -1;
+      transition: border-bottom-color 0.3s;
+    }
+
+    .triangle:hover {
+      transform: scale(1.1);
+    }
+
+    .triangle:hover::after {
+      border-bottom-color: #000;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: #b28dff;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.95rem;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .footer-text p {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      color: #f3f3f3;
+    }
+
+    .footer-text p:last-child {
+      font-size: 1rem;
+      color: #d4d4d4;
+    }
+
+    .footer-text p:first-child {
+      font-weight: bold;
+    }
+
+    .shapes, .targets {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .shape, .target {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .shape:hover {
+      transform: scale(1.1);
+    }
+
+    .circle { background: #FF6B6B; border-radius: 50%; }
+    .square { background: #6BCB77; }
+    .rectangle {
+      background: #FFD93D;
+      width: 120px;
+      height: 80px;
+      border-radius: 10px;
+    }
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #4D96FF;
+      background: none;
+    }
+
+    .target {
+      background: #ffffff;
+      border: 2px solid #ccc; /* Borda sólida suave */
+      color: #555;
+      width: 120px;
+      height: 100px;
+      transition: background-color 0.3s;
+    }
+
+    .success {
+      background-color: #d4edda !important;
+      border: 2px solid #28a745 !important;
+      color: #155724;
+    }
+
+    #message {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #2d6a4f;
+      position: relative;
+      z-index: 10;  /* Garante que o texto não se sobreponha a outros elementos */
+    }
+
+    .confetti {
+      font-size: 2em;
+      animation: pop 0.3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    .game-title {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .game-title h1 {
+      font-size: 2em;
+      color: #4b0082;
+    }
+
+    .game-title p {
+      font-size: 1.2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Formando Formas - Formas Geométricas</h1>
+    <nav>
+      <a href="index.html">Página Inicial</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+    </nav>
+  </header>
+
+  <div class="subtitle">
+    Aprenda se divertindo! Clique nas formas para ouvir seus nomes.
+  </div>
+
+  <div class="shapes-container">
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape circle" onclick="falar('Círculo')"></div>
+      </div>
+      <div class="label">Círculo</div>
+    </div>
+
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape square" onclick="falar('Quadrado')"></div>
+      </div>
+      <div class="label">Quadrado</div>
+    </div>
+
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape rectangle" onclick="falar('Retângulo')"></div>
+      </div>
+      <div class="label">Retângulo</div>
+    </div>
+
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="triangle" onclick="falar('Triângulo')"></div>
+      </div>
+      <div class="label">Triângulo</div>
+    </div>
+  </div>
+
+  <div class="game-title">
+    <h1>Jogo das Formas</h1>
+    <p>Arraste a forma até o nome correspondente!</p>
+  </div>
+
+  <div class="shapes">
+    <div class="shape circle" draggable="true" id="círculo"></div>
+    <div class="shape square" draggable="true" id="quadrado"></div>
+    <div class="shape rectangle" draggable="true" id="retângulo"></div>
+    <div class="shape triangle" draggable="true" id="triângulo"></div>
+  </div>
+
+  <div class="targets">
+    <div class="target" data-name="círculo">Círculo</div>
+    <div class="target" data-name="quadrado">Quadrado</div>
+    <div class="target" data-name="retângulo">Retângulo</div>
+    <div class="target" data-name="triângulo">Triângulo</div>
+  </div>
+
+  <p id="message"></p>
+
+  <script>
+    function falar(texto) {
+      const msg = new SpeechSynthesisUtterance(texto);
+      msg.lang = "pt-BR";
+      window.speechSynthesis.speak(msg);
+    }
+
+    document.querySelectorAll('.shape').forEach(shape => {
+      shape.addEventListener('dragstart', dragStart);
+    });
+
+    document.querySelectorAll('.target').forEach(target => {
+      target.addEventListener('dragover', dragOver);
+      target.addEventListener('drop', drop);
+    });
+
+    function dragStart(e) {
+      e.dataTransfer.setData('text', e.target.id);
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      const draggedElementId = e.dataTransfer.getData('text');
+      const target = e.target;
+      const targetName = target.getAttribute('data-name');
+
+      if (draggedElementId === targetName) {
+        target.classList.add('success');
+        document.getElementById('message').textContent = "Você acertou!";
+        document.getElementById('message').classList.add('confetti');
+      } else {
+        target.classList.remove('success');
+        document.getElementById('message').textContent = "Tente novamente!";
+        document.getElementById('message').classList.remove('confetti');
+      }
+    }
+  </script>
+
+  <footer>
+    <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
+    <p>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão l |</p>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
