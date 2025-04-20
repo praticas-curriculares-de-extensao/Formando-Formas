@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formando Formas</title>
+  <style>
+    body {
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #4b0082;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #b28dff;
+      padding: 20px;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ff8c00;
+    }
+    main {
+      flex: 1;
+      padding: 40px 20px;
+    }
+    .intro-card, .video-card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    .intro-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .intro-card p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .activity h2 {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #b28dff;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
+    }
+    .footer-logo {
+      max-height: 60px;
+      margin-bottom: 10px;
+    }
+    footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Formando Formas</h1>
+    <nav>
+      <a href="formas.html">Formas</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Introdução -->
+    <div class="intro-card activity">
+      <h2>Bem-vindo ao <strong>Formando Formas</strong></h2>
+      <p>Neste espaço, a geometria se transforma em uma aventura divertida, colorida e cheia de descobertas. Formas como círculos, triângulos, retângulos e quadrados ganham vida e saem dos livros para virar brincadeira, arte e imaginação. Tudo é pensado para ser acessível, inclusivo e encantador com atividades interativas, jogos criativos e desafios que despertam a curiosidade. <br>Aprender geometria nunca foi tão divertido! </p>
+    </div>
+
+    <!-- Videoaula -->
+    <div id="videoaulas" class="video-card activity">
+      <h2>Videoaulas Introdutórias</h2>
+      <iframe src="https://www.youtube.com/embed/XATPQpqrKzU" title="Videoaula de Formas Geométricas" allowfullscreen></iframe>
+    </div>
+  </main> 
+
+  <footer>
+    <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
+    <p>| 2025 Formando Formas - Projeto da displina de Práticas Curriculares de Extensão l |</p>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
