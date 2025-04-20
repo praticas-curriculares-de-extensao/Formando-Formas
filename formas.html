@@ -111,35 +111,11 @@
     }
 
     .triangle {
-      position: relative;
       width: 0;
       height: 0;
       border-left: 65px solid transparent;
       border-right: 65px solid transparent;
       border-bottom: 130px solid #f96b6b;
-      transition: transform 0.3s;
-    }
-
-    .triangle::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: -68px;
-      width: 0;
-      height: 0;
-      border-left: 68px solid transparent;
-      border-right: 68px solid transparent;
-      border-bottom: 136px solid transparent;
-      z-index: -1;
-      transition: border-bottom-color 0.3s;
-    }
-
-    .triangle:hover {
-      transform: scale(1.1);
-    }
-
-    .triangle:hover::after {
-      border-bottom-color: #000;
     }
 
     .label {
@@ -160,39 +136,6 @@
       box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .footer-logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .footer-logo {
-      height: 50px;
-      width: auto;
-    }
-
-    .footer-text p {
-      margin: 5px 0;
-      font-size: 1.1rem;
-      color: #f3f3f3;
-    }
-
-    .footer-text p:last-child {
-      font-size: 1rem;
-      color: #d4d4d4;
-    }
-
-    .footer-text p:first-child {
-      font-weight: bold;
-    }
-
     .shapes, .targets {
       display: flex;
       justify-content: center;
@@ -201,7 +144,7 @@
       flex-wrap: wrap;
     }
 
-    .shape, .target {
+    .shape {
       width: 100px;
       height: 100px;
       border-radius: 15px;
@@ -226,6 +169,7 @@
       height: 80px;
       border-radius: 10px;
     }
+
     .triangle {
       width: 0;
       height: 0;
@@ -236,18 +180,45 @@
     }
 
     .target {
-      background: #ffffff;
-      border: 2px solid #ccc; /* Borda sólida suave */
-      color: #555;
-      width: 120px;
-      height: 100px;
-      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      position: relative;
     }
 
-    .success {
-      background-color: #d4edda !important;
-      border: 2px solid #28a745 !important;
-      color: #155724;
+    .target.success {
+      background-color: #d4edda;
+      border: 2px solid #28a745;
+    }
+
+    .circle-outline {
+      width: 100px;
+      height: 100px;
+      border: 4px dashed #555;
+      border-radius: 50%;
+    }
+
+    .square-outline {
+      width: 100px;
+      height: 100px;
+      border: 4px dashed #555;
+      border-radius: 15px;
+    }
+
+    .rectangle-outline {
+      width: 120px;
+      height: 80px;
+      border: 4px dashed #555;
+      border-radius: 10px;
+    }
+
+    .triangle-outline {
+      width: 0;
+      height: 0;
+      border-left: 50px dashed transparent;
+      border-right: 50px dashed transparent;
+      border-bottom: 100px dashed #555;
     }
 
     #message {
@@ -255,7 +226,7 @@
       margin-top: 20px;
       color: #2d6a4f;
       position: relative;
-      z-index: 10;  /* Garante que o texto não se sobreponha a outros elementos */
+      z-index: 10;
     }
 
     .confetti {
@@ -281,6 +252,10 @@
     .game-title p {
       font-size: 1.2em;
       color: #333;
+    }
+
+    footer img.footer-logo {
+      height: 50px;
     }
   </style>
 </head>
@@ -330,7 +305,7 @@
 
   <div class="game-title">
     <h1>Jogo das Formas</h1>
-    <p>Arraste a forma até o nome correspondente!</p>
+    <p>Arraste a forma até o contorno correspondente!</p>
   </div>
 
   <div class="shapes">
@@ -341,10 +316,10 @@
   </div>
 
   <div class="targets">
-    <div class="target" data-name="círculo">Círculo</div>
-    <div class="target" data-name="quadrado">Quadrado</div>
-    <div class="target" data-name="retângulo">Retângulo</div>
-    <div class="target" data-name="triângulo">Triângulo</div>
+    <div class="target circle-outline" data-name="círculo"></div>
+    <div class="target square-outline" data-name="quadrado"></div>
+    <div class="target rectangle-outline" data-name="retângulo"></div>
+    <div class="target triangle-outline" data-name="triângulo"></div>
   </div>
 
   <p id="message"></p>
