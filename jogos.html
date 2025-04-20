@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formando Formas - Jogos</title>
+  <style>
+    body {
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #4b0082;
+    }
+
+    header {
+      background-color: #b28dff;
+      padding: 30px;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      color: #ff8c00;
+    }
+
+    .intro {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4b0082;
+    }
+
+    main {
+      flex: 1;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .activity {
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 25px;
+      background-color: white;
+      border: 4px solid #b28dff;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .quiz {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .quiz button {
+      width: 80px;
+      height: 80px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shape {
+      display: inline-block;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      background-color: gold;
+      border-radius: 50%;
+    }
+
+    .square {
+      width: 60px;
+      height: 60px;
+      background-color: dodgerblue;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 70px solid orange;
+      background: none;
+    }
+
+    .rectangle {
+      width: 120px;
+      height: 50px;
+      background-color: crimson;
+      border-radius: 6px;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #b28dff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo {
+      height: 50px;
+    }
+
+    /* Animações */
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes shine {
+      0% { box-shadow: 0 0 0px #00ff88; }
+      50% { box-shadow: 0 0 20px #00ff88; }
+      100% { box-shadow: 0 0 0px #00ff88; }
+    }
+
+    .celebrate {
+      font-size: 2.5rem;
+      color: green;
+      animation: pop 0.6s ease-out;
+      margin-top: 10px;
+    }
+
+    .correct-button {
+      animation: shine 0.8s ease-out;
+      border: 3px solid #00ff88;
+      border-radius: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Formando Formas - Jogos</h1>
+    <nav>
+      <a href="index.html">Página Inicial</a>
+      <a href="formas.html">Formas</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    <h2>Vamos brincar e aprender?</h2>
+  </div>
+
+  <main>
+    <div class="activity">
+      <!-- Círculo -->
+      <div class="card">
+        <h3>Qual dessas figuras é um Círculo?</h3>
+        <div class="quiz">
+          <button onclick="checkAnswer(this, 'circle', 'circle')"><div class="shape circle"></div></button>
+          <button onclick="checkAnswer(this, 'square', 'circle')"><div class="shape square"></div></button>
+          <button onclick="checkAnswer(this, 'triangle', 'circle')"><div class="triangle"></div></button>
+          <button onclick="checkAnswer(this, 'rectangle', 'circle')"><div class="shape rectangle"></div></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
+
+      <!-- Quadrado -->
+      <div class="card">
+        <h3>Qual dessas figuras é um Quadrado?</h3>
+        <div class="quiz">
+          <button onclick="checkAnswer(this, 'circle', 'square')"><div class="shape circle"></div></button>
+          <button onclick="checkAnswer(this, 'square', 'square')"><div class="shape square"></div></button>
+          <button onclick="checkAnswer(this, 'triangle', 'square')"><div class="triangle"></div></button>
+          <button onclick="checkAnswer(this, 'rectangle', 'square')"><div class="shape rectangle"></div></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
+
+      <!-- Triângulo -->
+      <div class="card">
+        <h3>Qual dessas figuras é um Triângulo?</h3>
+        <div class="quiz">
+          <button onclick="checkAnswer(this, 'circle', 'triangle')"><div class="shape circle"></div></button>
+          <button onclick="checkAnswer(this, 'square', 'triangle')"><div class="shape square"></div></button>
+          <button onclick="checkAnswer(this, 'triangle', 'triangle')"><div class="triangle"></div></button>
+          <button onclick="checkAnswer(this, 'rectangle', 'triangle')"><div class="shape rectangle"></div></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
+
+      <!-- Retângulo -->
+      <div class="card">
+        <h3>Qual dessas figuras é um Retângulo?</h3>
+        <div class="quiz">
+          <button onclick="checkAnswer(this, 'circle', 'rectangle')"><div class="shape circle"></div></button>
+          <button onclick="checkAnswer(this, 'square', 'rectangle')"><div class="shape square"></div></button>
+          <button onclick="checkAnswer(this, 'triangle', 'rectangle')"><div class="triangle"></div></button>
+          <button onclick="checkAnswer(this, 'rectangle', 'rectangle')"><div class="shape rectangle"></div></button>
+        </div>
+        <p class="feedback"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
+      <div>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão l |</div>
+    </div>
+  </footer>
+
+  <!-- Som de comemoração -->
+  <audio id="success-sound" src="success.mp3" preload="auto"></audio>
+
+  <script>
+    function checkAnswer(button, selected, correct) {
+      const card = button.closest('.card');
+      const feedback = card.querySelector('.feedback');
+      feedback.innerHTML = '';
+      feedback.style.color = '';
+
+      if (selected === correct) {
+        // Feedback animado
+        button.classList.add('correct-button');
+        feedback.innerHTML = '<div class="celebrate">🎉 Muito bem! Você acertou! 🎉</div>';
+        document.getElementById('success-sound').play();
+        setTimeout(() => {
+          button.classList.remove('correct-button');
+        }, 1000);
+      } else {
+        feedback.innerHTML = 'Ops! Tente novamente. 😊';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
