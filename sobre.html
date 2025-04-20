@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formando Formas - Sobre Nós</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Arial Rounded MT Bold', sans-serif;
       background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
@@ -16,56 +12,54 @@
       padding: 0;
       text-align: center;
       color: #4b0082;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
       background-color: #b28dff;
-      padding: 20px 15px;
+      padding: 30px;
       color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       position: sticky;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1;
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.4rem;
+      font-size: 2.8rem;
+      font-weight: bold;
     }
 
     nav {
-      margin-top: 10px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     nav a {
-      position: relative;
-      margin: 0 12px;
       color: white;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.05rem;
-      padding: 6px 12px;
-      border-radius: 12px;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      background-color: #d4b3ff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s, transform 0.2s;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.2);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-    }
-
-    nav a:hover::after {
-      opacity: 1;
+    nav a:hover {
+      background-color: #dda0dd;
+      transform: scale(1.1);
     }
 
     main {
-      padding: 80px 20px 40px;
+      flex: 1;
+      padding: 40px 20px;
     }
 
     .intro {
@@ -128,21 +122,12 @@
     }
 
     footer {
-      padding: 20px;
       background-color: #b28dff;
       color: white;
+      padding: 20px 10px;
       text-align: center;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer a:hover {
-      color: #ff8c00;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
     }
 
     .footer-logo {
@@ -150,29 +135,34 @@
       margin-bottom: 10px;
     }
 
+    footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
     @media (max-width: 480px) {
       header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
-      nav a {
-        display: block;
-        margin: 10px 0;
+      nav {
+        flex-direction: column;
+        gap: 10px;
       }
 
-      main {
-        padding-top: 100px;
+      .member img {
+        height: auto;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Formando Formas - Quem Somos</h1>
+    <h1>Formando Formas - Sobre Nós</h1>
     <nav>
-      <a href="index.html">Página Inicial</a>
-      <a href="jogos.html">Jogos</a>
+      <a href="index.html">Início</a>
       <a href="formas.html">Formas</a>
+      <a href="jogos.html">Jogos</a>
     </nav>
   </header>
 
