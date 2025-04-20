@@ -78,7 +78,6 @@
       justify-content: center;
       min-height: 140px;
       width: 160px;
-      border: 2px dashed #aaa; /* Contorno tracejado */
     }
 
     .shape {
@@ -97,54 +96,28 @@
       height: 130px;
       border-radius: 50%;
       background: #4aa3df;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
     }
 
     .square {
       width: 130px;
       height: 130px;
       background: #ffcc66;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
     }
 
     .rectangle {
       width: 160px;
       height: 100px;
       background: #66cc99;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
     }
 
     .triangle {
+      position: relative;
       width: 0;
       height: 0;
       border-left: 65px solid transparent;
       border-right: 65px solid transparent;
       border-bottom: 130px solid #f96b6b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: white;
-      position: relative;
+      transition: transform 0.3s;
     }
 
     .triangle::after {
@@ -158,6 +131,15 @@
       border-right: 68px solid transparent;
       border-bottom: 136px solid transparent;
       z-index: -1;
+      transition: border-bottom-color 0.3s;
+    }
+
+    .triangle:hover {
+      transform: scale(1.1);
+    }
+
+    .triangle:hover::after {
+      border-bottom-color: transparent; /* Desabilita a mudança de cor */
     }
 
     .label {
@@ -220,8 +202,8 @@
     }
 
     .shape, .target {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 15px;
       display: flex;
       align-items: center;
@@ -230,9 +212,6 @@
       cursor: pointer;
       user-select: none;
       transition: transform 0.2s;
-      text-align: center;
-      font-size: 1.2rem;
-      color: white;
     }
 
     .shape:hover {
@@ -256,18 +235,19 @@
       background: none;
     }
 
+    /* Corrigindo os contornos das áreas de destino */
     .target {
       background: #ffffff;
-      border: 2px dashed #ccc;
+      border: 2px dashed #ccc; /* Borda tracejada */
       color: #555;
-      width: 140px;
-      height: 120px;
+      width: 120px;
+      height: 100px;
       transition: background-color 0.3s;
     }
 
     .success {
       background-color: #d4edda !important;
-      border: 2px solid #28a745 !important;
+      border: 2px dashed #28a745 !important;
       color: #155724;
     }
 
@@ -276,7 +256,7 @@
       margin-top: 20px;
       color: #2d6a4f;
       position: relative;
-      z-index: 10;
+      z-index: 10;  /* Garante que o texto não se sobreponha a outros elementos */
     }
 
     .confetti {
@@ -311,7 +291,7 @@
     <nav>
       <a href="index.html">Página Inicial</a>
       <a href="jogos.html">Jogos</a>
-      <a href="sobre.html">Sobre Nós</a>
+      <a href="sobrenos.html">Sobre Nós</a>
     </nav>
   </header>
 
@@ -321,27 +301,31 @@
 
   <div class="shapes-container">
     <div class="shape-container">
-      <div class="shape circle" onclick="falar('Círculo')">
-        Círculo
+      <div class="shape-box">
+        <div class="shape circle" onclick="falar('Círculo')"></div>
       </div>
+      <div class="label">Círculo</div>
     </div>
 
     <div class="shape-container">
-      <div class="shape square" onclick="falar('Quadrado')">
-        Quadrado
+      <div class="shape-box">
+        <div class="shape square" onclick="falar('Quadrado')"></div>
       </div>
+      <div class="label">Quadrado</div>
     </div>
 
     <div class="shape-container">
-      <div class="shape rectangle" onclick="falar('Retângulo')">
-        Retângulo
+      <div class="shape-box">
+        <div class="shape rectangle" onclick="falar('Retângulo')"></div>
       </div>
+      <div class="label">Retângulo</div>
     </div>
 
     <div class="shape-container">
-      <div class="shape triangle" onclick="falar('Triângulo')">
-        Triângulo
+      <div class="shape-box">
+        <div class="triangle" onclick="falar('Triângulo')"></div>
       </div>
+      <div class="label">Triângulo</div>
     </div>
   </div>
 
