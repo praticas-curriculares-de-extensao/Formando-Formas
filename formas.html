@@ -18,6 +18,7 @@
       flex-direction: column;
       min-height: 100vh;
       color: #4b0082;
+      padding-top: 120px; /* Aumentado para evitar sobreposição */
     }
 
     header {
@@ -26,6 +27,11 @@
       text-align: center;
       color: white;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: fixed; /* Cabeçalho fixo */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Garantir que fique por cima do conteúdo */
     }
 
     header h1 {
@@ -60,24 +66,13 @@
       font-size: 1.4em;
       color: #6a0dad;
       font-weight: bold;
-      position: relative;
-    }
-
-    .subtitle::after {
-      content: "";
-      display: block;
-      width: 100px;
-      height: 3px;
-      background: #b28dff;
-      margin: 10px auto;
-      border-radius: 3px;
     }
 
     .shapes-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-around; 
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 50px;
       padding: 20px;
       max-width: 1000px;
       margin: 0 auto;
@@ -240,8 +235,6 @@
       font-size: 1.1em;
     }
 
-    /* Removidos estilos especiais dos targets (círculo e triângulo) */
-
     .target:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -377,7 +370,7 @@
     function falar(texto) {
       const msg = new SpeechSynthesisUtterance(texto);
       msg.lang = "pt-BR";
-      msg.rate = 0.9;
+      msg.rate = 1.0;
       window.speechSynthesis.speak(msg);
 
       const shape = event.target.closest('.shape');
@@ -401,7 +394,7 @@
 
     function dragStart(e) {
       e.dataTransfer.setData('text', e.target.id);
-      e.target.style.opacity = '0.6';
+      e.target.style.opacity = '1.0';
     }
 
     function dragOver(e) {
@@ -433,13 +426,13 @@
 
       if (draggedElementId === targetName) {
         target.classList.add('success');
-        document.getElementById('message').textContent = "Parabéns! Você acertou!";
+        document.getElementById('message').textContent = "🎉Parabéns! Você acertou!🎉";
         setTimeout(() => {
           target.classList.remove('success');
           document.getElementById('message').textContent = '';
         }, 2000);
       } else {
-        document.getElementById('message').textContent = "Ops! Tente novamente!";
+        document.getElementById('message').textContent = "Ops! Tente novamente!😊";
         setTimeout(() => {
           document.getElementById('message').textContent = '';
         }, 2000);
