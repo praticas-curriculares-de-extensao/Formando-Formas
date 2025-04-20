@@ -1,11 +1,14 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formando Formas - Jogos</title>
+  <title>Formando Formas - Formas Geométricas</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Arial Rounded MT Bold', sans-serif;
       background: linear-gradient(to bottom right, #ffe4ec, #d6f0ff);
@@ -19,301 +22,379 @@
 
     header {
       background-color: #b28dff;
-      padding: 30px;
+      padding: 20px;
+      text-align: center;
       color: white;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    header nav {
+      margin-top: 10px;
+    }
+
+    header a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      color: #ff8c00;
+    }
+
+    .subtitle {
       text-align: center;
+      margin: 25px 20px 10px;
+      font-size: 1.3em;
+      color: #6a0dad;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .shapes-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    .shape-container {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    header h2 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-
-    nav {
-      margin-top: 10px;
+    .shape-box {
       display: flex;
+      align-items: flex-end;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-      font-size: 1.1rem;
-    }
-
-    nav a:hover {
-      color: #ff8c00;
-    }
-
-    .intro {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #4b0082;
-    }
-
-    main {
-      flex: 1;
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .activity {
-      margin-top: 30px;
-    }
-
-    .card {
-      padding: 25px;
-      background-color: white;
-      border: 4px solid #b28dff;
-      border-radius: 15px;
-      max-width: 500px;
-      margin: 20px auto;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-
-    .quiz {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .quiz button {
-      width: 80px;
-      height: 80px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 140px;
+      width: 160px;
     }
 
     .shape {
-      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.3s, border 0.3s;
+      border: 3px solid transparent;
+    }
+
+    .shape:hover {
+      transform: scale(1.1);
+      border-color: #000;
     }
 
     .circle {
-      width: 80px;
-      height: 80px;
-      background-color: gold;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
+      background: #4aa3df;
     }
 
     .square {
-      width: 60px;
-      height: 60px;
-      background-color: dodgerblue;
-    }
-
-    .triangle {
-      width: 0;
-      height: 0;
-      border-left: 40px solid transparent;
-      border-right: 40px solid transparent;
-      border-bottom: 70px solid orange;
-      background: none;
+      width: 130px;
+      height: 130px;
+      background: #ffcc66;
     }
 
     .rectangle {
-      width: 120px;
-      height: 50px;
-      background-color: crimson;
-      border-radius: 6px;
+      width: 160px;
+      height: 100px;
+      background: #66cc99;
     }
 
-    .feedback {
-      margin-top: 15px;
-      font-size: 1.2rem;
+    .triangle {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-left: 65px solid transparent;
+      border-right: 65px solid transparent;
+      border-bottom: 130px solid #f96b6b;
+      transition: transform 0.3s;
+    }
+
+    .triangle::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -68px;
+      width: 0;
+      height: 0;
+      border-left: 68px solid transparent;
+      border-right: 68px solid transparent;
+      border-bottom: 136px solid transparent;
+      z-index: -1;
+      transition: border-bottom-color 0.3s;
+    }
+
+    .triangle:hover {
+      transform: scale(1.1);
+    }
+
+    .triangle:hover::after {
+      border-bottom-color: #000;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #333;
       font-weight: bold;
+      text-align: center;
     }
 
     footer {
+      margin-top: auto;
       background-color: #b28dff;
       color: white;
-      padding: 20px;
       text-align: center;
+      padding: 20px 0;
+      font-size: 0.95rem;
       box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-      margin-top: auto;
     }
 
     .footer-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+    }
+
+    .footer-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .footer-logo {
       height: 50px;
+      width: auto;
     }
 
-    /* Animações */
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      50% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
+    .footer-text p {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      color: #f3f3f3;
     }
 
-    @keyframes shine {
-      0% { box-shadow: 0 0 0px #00ff88; }
-      50% { box-shadow: 0 0 20px #00ff88; }
-      100% { box-shadow: 0 0 0px #00ff88; }
+    .footer-text p:last-child {
+      font-size: 1rem;
+      color: #d4d4d4;
     }
 
-    .celebrate {
-      font-size: 2.5rem;
-      color: green;
-      animation: pop 0.6s ease-out;
-      margin-top: 10px;
+    .footer-text p:first-child {
+      font-weight: bold;
     }
 
-    .correct-button {
-      animation: shine 0.8s ease-out;
-      border: 3px solid #00ff88;
+    .shapes, .targets {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .shape, .target {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .shape:hover {
+      transform: scale(1.1);
+    }
+
+    .circle { background: #FF6B6B; border-radius: 50%; }
+    .square { background: #6BCB77; }
+    .rectangle {
+      background: #FFD93D;
+      width: 120px;
+      height: 80px;
       border-radius: 10px;
     }
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #4D96FF;
+      background: none;
+    }
 
+    .target {
+      background: #ffffff;
+      border: 2px solid #ccc;
+      color: #555;
+      width: 120px;
+      height: 100px;
+      transition: background-color 0.3s;
+    }
+
+    .success {
+      background-color: #d4edda !important;
+      border: 2px solid #28a745 !important;
+      color: #155724;
+    }
+
+    #message {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #2d6a4f;
+      position: relative;
+      z-index: 10;
+    }
+
+    .confetti {
+      font-size: 2em;
+      animation: pop 0.3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    .game-title {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .game-title h1 {
+      font-size: 2em;
+      color: #4b0082;
+    }
+
+    .game-title p {
+      font-size: 1.2em;
+      color: #333;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Formando Formas - Jogos</h1>
+    <h1>Formando Formas - Formas Geométricas</h1>
     <nav>
       <a href="index.html">Página Inicial</a>
-      <a href="formas.html">Formas</a>
+      <a href="jogos.html">Jogos</a>
       <a href="sobre.html">Sobre Nós</a>
     </nav>
   </header>
 
-  <div class="intro">
-    <h2>Vamos brincar e aprender?</h2>
+  <div class="subtitle">
+    Aprenda se divertindo! Clique nas formas para ouvir seus nomes. Dica: dê duplo clique na forma para apagá-la!
   </div>
 
-  <main>
-    <div class="activity">
-      <!-- Círculo -->
-      <div class="card">
-        <h3>Qual dessas figuras é um Círculo?</h3>
-        <div class="quiz">
-          <button onclick="checkAnswer(this, 'circle', 'circle')"><div class="shape circle"></div></button>
-          <button onclick="checkAnswer(this, 'square', 'circle')"><div class="shape square"></div></button>
-          <button onclick="checkAnswer(this, 'triangle', 'circle')"><div class="triangle"></div></button>
-          <button onclick="checkAnswer(this, 'rectangle', 'circle')"><div class="shape rectangle"></div></button>
-        </div>
-        <p class="feedback"></p>
+  <div class="shapes-container">
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape circle" onclick="falar('Círculo')" ondblclick="this.remove()"></div>
       </div>
-
-      <!-- Quadrado -->
-      <div class="card">
-        <h3>Qual dessas figuras é um Quadrado?</h3>
-        <div class="quiz">
-          <button onclick="checkAnswer(this, 'circle', 'square')"><div class="shape circle"></div></button>
-          <button onclick="checkAnswer(this, 'square', 'square')"><div class="shape square"></div></button>
-          <button onclick="checkAnswer(this, 'triangle', 'square')"><div class="triangle"></div></button>
-          <button onclick="checkAnswer(this, 'rectangle', 'square')"><div class="shape rectangle"></div></button>
-        </div>
-        <p class="feedback"></p>
-      </div>
-
-      <!-- Triângulo -->
-      <div class="card">
-        <h3>Qual dessas figuras é um Triângulo?</h3>
-        <div class="quiz">
-          <button onclick="checkAnswer(this, 'circle', 'triangle')"><div class="shape circle"></div></button>
-          <button onclick="checkAnswer(this, 'square', 'triangle')"><div class="shape square"></div></button>
-          <button onclick="checkAnswer(this, 'triangle', 'triangle')"><div class="triangle"></div></button>
-          <button onclick="checkAnswer(this, 'rectangle', 'triangle')"><div class="shape rectangle"></div></button>
-        </div>
-        <p class="feedback"></p>
-      </div>
-
-      <!-- Retângulo -->
-      <div class="card">
-        <h3>Qual dessas figuras é um Retângulo?</h3>
-        <div class="quiz">
-          <button onclick="checkAnswer(this, 'circle', 'rectangle')"><div class="shape circle"></div></button>
-          <button onclick="checkAnswer(this, 'square', 'rectangle')"><div class="shape square"></div></button>
-          <button onclick="checkAnswer(this, 'triangle', 'rectangle')"><div class="triangle"></div></button>
-          <button onclick="checkAnswer(this, 'rectangle', 'rectangle')"><div class="shape rectangle"></div></button>
-        </div>
-        <p class="feedback"></p>
-      </div>
+      <div class="label">Círculo</div>
     </div>
-  </main>
 
-  <footer>
-    <div class="footer-content">
-      <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
-      <div>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão l |</div>
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape square" onclick="falar('Quadrado')" ondblclick="this.remove()"></div>
+      </div>
+      <div class="label">Quadrado</div>
     </div>
-  </footer>
 
-  <!-- Som de comemoração -->
-  <audio id="success-sound" src="success.mp3" preload="auto"></audio>
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="shape rectangle" onclick="falar('Retângulo')" ondblclick="this.remove()"></div>
+      </div>
+      <div class="label">Retângulo</div>
+    </div>
+
+    <div class="shape-container">
+      <div class="shape-box">
+        <div class="triangle" onclick="falar('Triângulo')" ondblclick="this.remove()"></div>
+      </div>
+      <div class="label">Triângulo</div>
+    </div>
+  </div>
+
+  <div class="game-title">
+    <h1>Jogo das Formas</h1>
+    <p>Arraste a forma até o nome correspondente!</p>
+  </div>
+
+  <div class="shapes">
+    <div class="shape circle" draggable="true" id="círculo"></div>
+    <div class="shape square" draggable="true" id="quadrado"></div>
+    <div class="shape rectangle" draggable="true" id="retângulo"></div>
+    <div class="shape triangle" draggable="true" id="triângulo"></div>
+  </div>
+
+  <div class="targets">
+    <div class="target" data-name="círculo">Círculo</div>
+    <div class="target" data-name="quadrado">Quadrado</div>
+    <div class="target" data-name="retângulo">Retângulo</div>
+    <div class="target" data-name="triângulo">Triângulo</div>
+  </div>
+
+  <p id="message"></p>
 
   <script>
-    function checkAnswer(button, selected, correct) {
-      const card = button.closest('.card');
-      const feedback = card.querySelector('.feedback');
-      feedback.innerHTML = '';
-      feedback.style.color = '';
+    function falar(texto) {
+      const msg = new SpeechSynthesisUtterance(texto);
+      msg.lang = "pt-BR";
+      window.speechSynthesis.speak(msg);
+    }
 
-      if (selected === correct) {
-        // Feedback animado
-        button.classList.add('correct-button');
-        feedback.innerHTML = '<div class="celebrate">🎉 Muito bem! Você acertou! 🎉</div>';
-        document.getElementById('success-sound').play();
-        setTimeout(() => {
-          button.classList.remove('correct-button');
-        }, 1000);
+    document.querySelectorAll('.shape').forEach(shape => {
+      shape.addEventListener('dragstart', dragStart);
+      shape.addEventListener('dblclick', () => shape.remove());
+    });
+
+    document.querySelectorAll('.target').forEach(target => {
+      target.addEventListener('dragover', dragOver);
+      target.addEventListener('drop', drop);
+    });
+
+    function dragStart(e) {
+      e.dataTransfer.setData('text', e.target.id);
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      const draggedElementId = e.dataTransfer.getData('text');
+      const target = e.target;
+      const targetName = target.getAttribute('data-name');
+
+      if (draggedElementId === targetName) {
+        target.classList.add('success');
+        document.getElementById('message').textContent = "Você acertou!";
+        document.getElementById('message').classList.add('confetti');
       } else {
-        feedback.innerHTML = 'Ops! Tente novamente. 😊';
-        feedback.style.color = 'red';
+        target.classList.remove('success');
+        document.getElementById('message').textContent = "Tente novamente!";
+        document.getElementById('message').classList.remove('confetti');
       }
     }
   </script>
+
+  <footer>
+    <img src="logo.png" alt="Logo do IFPE" class="footer-logo">
+    <p>| 2025 Formando Formas - Projeto da disciplina de Práticas Curriculares de Extensão l |</p>
+  </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
