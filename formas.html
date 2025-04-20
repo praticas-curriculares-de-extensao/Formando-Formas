@@ -111,11 +111,11 @@
     }
 
     .triangle {
-      width: 0;
-      height: 0;
-      border-left: 65px solid transparent;
-      border-right: 65px solid transparent;
-      border-bottom: 130px solid #f96b6b;
+      width: 130px;
+      height: 130px;
+      background: #f96b6b;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      border-radius: 15px;
     }
 
     .label {
@@ -136,6 +136,11 @@
       box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
     }
 
+    .footer-logo {
+      height: 50px;
+      width: auto;
+    }
+
     .shapes, .targets {
       display: flex;
       justify-content: center;
@@ -144,7 +149,7 @@
       flex-wrap: wrap;
     }
 
-    .shape {
+    .shape, .target {
       width: 100px;
       height: 100px;
       border-radius: 15px;
@@ -171,54 +176,47 @@
     }
 
     .triangle {
-      width: 0;
-      height: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-      border-bottom: 100px solid #4D96FF;
-      background: none;
-    }
-
-    .target {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      position: relative;
-    }
-
-    .target.success {
-      background-color: #d4edda;
-      border: 2px solid #28a745;
-    }
-
-    .circle-outline {
+      background: #4D96FF;
       width: 100px;
       height: 100px;
-      border: 4px dashed #555;
-      border-radius: 50%;
-    }
-
-    .square-outline {
-      width: 100px;
-      height: 100px;
-      border: 4px dashed #555;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       border-radius: 15px;
     }
 
-    .rectangle-outline {
-      width: 120px;
-      height: 80px;
+    .target {
+      background: #ffffff;
       border: 4px dashed #555;
-      border-radius: 10px;
+      color: #555;
+      width: 120px;
+      height: 100px;
+      transition: background-color 0.3s;
     }
 
-    .triangle-outline {
-      width: 0;
-      height: 0;
-      border-left: 50px dashed transparent;
-      border-right: 50px dashed transparent;
-      border-bottom: 100px dashed #555;
+    .target[data-name="círculo"] {
+      border-radius: 50%;
+    }
+
+    .target[data-name="quadrado"] {
+      border-radius: 15px;
+    }
+
+    .target[data-name="retângulo"] {
+      border-radius: 10px;
+      width: 120px;
+      height: 80px;
+    }
+
+    .target[data-name="triângulo"] {
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      border-radius: 15px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .success {
+      background-color: #d4edda !important;
+      border: 4px solid #28a745 !important;
+      color: #155724;
     }
 
     #message {
@@ -252,10 +250,6 @@
     .game-title p {
       font-size: 1.2em;
       color: #333;
-    }
-
-    footer img.footer-logo {
-      height: 50px;
     }
   </style>
 </head>
@@ -297,7 +291,7 @@
 
     <div class="shape-container">
       <div class="shape-box">
-        <div class="triangle" onclick="falar('Triângulo')"></div>
+        <div class="shape triangle" onclick="falar('Triângulo')"></div>
       </div>
       <div class="label">Triângulo</div>
     </div>
@@ -305,7 +299,7 @@
 
   <div class="game-title">
     <h1>Jogo das Formas</h1>
-    <p>Arraste a forma até o contorno correspondente!</p>
+    <p>Arraste a forma até o nome correspondente!</p>
   </div>
 
   <div class="shapes">
@@ -316,10 +310,10 @@
   </div>
 
   <div class="targets">
-    <div class="target circle-outline" data-name="círculo"></div>
-    <div class="target square-outline" data-name="quadrado"></div>
-    <div class="target rectangle-outline" data-name="retângulo"></div>
-    <div class="target triangle-outline" data-name="triângulo"></div>
+    <div class="target" data-name="círculo">Círculo</div>
+    <div class="target" data-name="quadrado">Quadrado</div>
+    <div class="target" data-name="retângulo">Retângulo</div>
+    <div class="target" data-name="triângulo">Triângulo</div>
   </div>
 
   <p id="message"></p>
